@@ -5,7 +5,7 @@ exports.run = async (client, message, args) => {// chimp#0110
 const prefix = await data.fetch(`prefix.${message.guild.id}`) || client.ayarlar.prefix;
 if(!message.member.hasPermission('ADMINISTRATOR')) return;
   
-if(args[0] === 'kanal-ayarla') {
+if(args[0] === 'ayarla') {
 
 const annen = await data.fetch(`kanal.${message.guild.id}`)
 if(annen) return message.channel.send(`Mesajı göndereceğim kanal zaten ayarlı: ${prefix}ticket-kanal sıfırla`)
@@ -16,7 +16,7 @@ data.set(`kanal.${message.guild.id}`, kanal.id)
 message.channel.send(new Discord.RichEmbed().setColor('GREEN').setDescription(`Mesajın kanalı başarıyla ayarlandı: ${prefix}ticket gönder`))
 }
 
-if(args[0] === 'kanal-sıfırla') {
+if(args[0] === 'sıfırla') {
 const annen = await data.fetch(`kanal.${message.guild.id}`)
 if(!annen) return message.channel.send(`Mesajı göndereceğim kanal zaten ayarlı: ${prefix}ticket-kanal sıfırla`)
 
