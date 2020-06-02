@@ -42,7 +42,7 @@ s.send(`${author}, Hoşgeldin!`, new Discord.RichEmbed()
 Bileti kapatmak istersen: 🔒`)
 .setFooter(`TicketTool.xyz - Ticketing without clutter`, client.user.avatarURL)).then(m => {
 m.react(`🔒`)
-let si = (reaction, user) => reaction.emoji.name === "🔒" && user.id !== client.user.id && user.id == message.author.id
+let si = (reaction, user) => reaction.emoji.name === "🔒" && user.id !== client.user.id
 let s23 = m.createReactionCollector(si, { time: 0 });
 
 s23.on('collect', async reaction => {
@@ -50,9 +50,9 @@ const author = reaction.users.last()
 reaction.remove(author.id) 
 m.react(`✅`)
 m.react(`❌`)
-let sil = (reaction, user) => reaction.emoji.name === "✅" && user.id !== client.user.id && user.id == message.author.id
+let sil = (reaction, user) => reaction.emoji.name === "✅" && user.id !== client.user.id
 let sill = m.createReactionCollector(sil, { time: 0 });
-let ss = (reaction, user) => reaction.emoji.name === "❌" && user.id !== client.user.id && user.id == message.author.id
+let ss = (reaction, user) => reaction.emoji.name === "❌" && user.id !== client.user.id
 let s2 = m.createReactionCollector(ss, { time: 0 });
 s2.on('collect', async reaction => {
 s.fetchMessages({limit:10}).then(async messages => { 
@@ -73,9 +73,9 @@ s.send(new Discord.RichEmbed()
 :no_entry:: Ticketi siler.`)).then(m2 => {
 m2.react('🔓')
 m2.react('⛔')
-let sil = (reaction, user) => reaction.emoji.name === "⛔" && user.id !== client.user.id && user.id == message.author.id
+let sil = (reaction, user) => reaction.emoji.name === "⛔" && user.id !== client.user.id
 let sill = m2.createReactionCollector(sil, { time: 0 });
-let geri = (reaction, user) => reaction.emoji.name === "🔓" && user.id !== client.user.id && user.id == message.author.id
+let geri = (reaction, user) => reaction.emoji.name === "🔓" && user.id !== client.user.id
 let geriaç = m2.createReactionCollector(geri, { time: 0 });
 
 geriaç.on('collect', async reaction => {
