@@ -35,7 +35,8 @@ s.overwritePermissions(role, { 'VIEW_CHANNEL': false });
 message.guild.members.forEach(u => {
 if(u.hasPermission('MANAGE_GUILD')) {
 s.overwritePermissions(u, { 'VIEW_CHANNEL':true, 'SEND_MESSAGES':true, 'MANAGE_MESSAGES':true, 'MANAGE_CHANNELS':true }); }})
-s.send(`${message.author}, Hoşgeldin!`, new Discord.RichEmbed()
+s.overwritePermissions(author, { 'VIEW_CHANNEL':true, 'SEND_MESSAGES':true });
+s.send(`${author}, Hoşgeldin!`, new Discord.RichEmbed()
 .setColor('GREEN')
 .setDescription(`Çok yakın zaman da seninle ilgileneceğiz.
 Bileti kapatmak istersen: 🔒`)
@@ -63,7 +64,7 @@ let us = reaction.users.last()
 reaction.remove(us.id)
 s.send(new Discord.RichEmbed()
 .setColor('#ffff00')
-.setDescription(`Bilet ${message.author} tarafından kapatıldı.`))
+.setDescription(`Bilet ${us.id} tarafından kapatıldı.`))
 s.setName(`closed-${as}`)
 s.send(new Discord.RichEmbed()
 .setColor('RED')
@@ -83,7 +84,7 @@ m2.delete('500')
 reaction.remove(author.id) 
 s.send(new Discord.RichEmbed()
 .setColor('GREEN')
-.setDescription(`Bilet ${message.author} tarafından tekrar açıldı.`))
+.setDescription(`Bilet ${author} tarafından tekrar açıldı.`))
 s.setName(`ticket-${as}`)
 })
 
