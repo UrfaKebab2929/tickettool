@@ -18,7 +18,7 @@ message.channel.send(new Discord.RichEmbed().setColor('GREEN').setDescription(`M
 
 if(args[0] === 'sıfırla') {
 const annen = await data.fetch(`kanal.${message.guild.id}`)
-if(!annen) return message.channel.send(`Mesajı göndereceğim kanal zaten ayarlı: ${prefix}ticket-kanal sıfırla`)
+if(!annen) return message.channel.send(`Mesajı göndereceğim kanal zaten ayarlı değil: ${prefix}ticket-kanal sıfırla`)
 
 data.delete(`kanal.${message.guild.id}`)
 message.channel.send(new Discord.RichEmbed().setColor('GREEN').setDescription(`Mesajın kanalı başarıyla sıfırlandı: ${prefix}ticket-kanal ayarla #channel`))
