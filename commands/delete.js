@@ -3,53 +3,22 @@ const data = require('quick.db')
 
 exports.run = async (client, message, args) => {// chimp#0110
 const prefix = await data.fetch(`prefix.${message.guild.id}`) || client.ayarlar.prefix;
-  
-if(!args[0]) {
-  
-const embed = new Discord.RichEmbed()
-.setColor('GREEN')
-.addField(`Yardım Menüsü`, `\`${prefix}yardım komutlar\` - Komutlar hakkında bilgi verir.
-\`${prefix}yardım setup\` - Kurulum hakkında bilgi verir.
-\`${prefix}yardım sss\` - Sıkça sorulan sorular.`)
+const ad = await data.fetch(`numara.${message.channel.id}`)
+if(message.channel.name === `ticket-${ad}` || message.channel.name === `closed-${ad}`) {
+const ann = await data.fetch(`asd.${message.guild.id}.${message.channel.id}.${message.author.id}`)
+if(!ann) return message.channel.send(`Bu bilet senin değil.`)
+message.delete()
 
-message.channel.send(embed)  }
+message.channel.send(new Discord.RichEmbed()
+.setColor('RED')
+.setDescription(`Bilet 5 saniye sonra ebediyen silinecek.`))
+setTimeout(async () => {
+message.channel.delete()
+data.delete(`asd.${message.guild.id}.${message.channel.id}.${message.author.id}`)
+}, 5000)
 
-if(args[0] === 'komutlar') {
-  
-const embed = new Discord.RichEmbed()
-.setColor('GREEN')
-.setDescription(`() = Tercih.
-[] = Gerekli.`)
-.addField(`==================================
-Ticket Commands
-==================================
+} else { return message.channel.send(`Bu komutu bir bilet kanalında kullanın.`) }
 
-\`$ekle [Etiket] (kanal)\``, `*Açıklama: Bilete başka birisini/rolü eklersiniz.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$sil [Etiket] (kanal)\``, `*Açıklama: Bilete ekli birisini/rolü silersiniz.
-Ekstra kullanım: $kaldır*`)
-
-.addField(`\`$kapat [Etiket] (kanal)\``, `*Açıklama: Bileti kapatırsınız.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$aç [Etiket] (kanal)\``, `*Açıklama: Bileti açarsınız.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$bilet-sil \``, `*Açıklama: Bileti silersiniz.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$ping [gönder])\``, `*Açıklama: Botun pingini gösterir.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$ticket-kanal [ayarla/sıfırla] (kanal)\``, `*Açıklama: Bilet mesajının kanalını ayarlarsınız.
-Ekstra kullanım: Bulunmuyor.*`)
-
-.addField(`\`$ticket [gönder])\``, `*Açıklama: Bilet mesajını yollar.
-Ekstra kullanım: Bulunmuyor.*`)
-message.channel.send(embed)  }  
-
-  
 };
 exports.conf = {
   enabled: true,
@@ -59,5 +28,5 @@ exports.conf = {
 }
 
 exports.help = {
-  name: 'yardım'
+  name: 'bilet-sil'
 };// codare
